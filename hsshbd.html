@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proses Sedang Berlangsung</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #3f2b96, #a8c0ff);
+      color: dark;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      opacity: 0.9;
+    }
+    #timer {
+      margin-top: 30px;
+      font-size: 3rem;
+      font-weight: bold;
+      color: #ffeb3b;
+      text-shadow: 0 0 10px #ffeb3b;
+    }
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #ffffff80, 0 0 20px #ffffff80;
+      }
+      to {
+        text-shadow: 0 0 20px #ffffff, 0 0 30px #ffffff;
+      }
+    }
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      #timer {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Website Sedang Diproses</h1>
+  <p>Mohon tunggu sebentar, halaman sedang disiapkan...</p>
+  <div id="timer">03:00</div>
+
+  <script>
+    let duration = 168; // waktu countdown dalam detik
+    const timerEl = document.getElementById("timer");
+
+    function updateTimer() {
+      let minutes = Math.floor(duration / 60);
+      let seconds = duration % 60;
+      timerEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      if (duration > 0) {
+        duration--;
+      } else {
+        timerEl.textContent = "Selesai!, Harap Refresh Website Ini";
+      }
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer(); // panggil pertama kali
+  </script>
+</body>
+</html>
